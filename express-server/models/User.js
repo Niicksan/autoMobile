@@ -1,12 +1,18 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 
 const userSchema = new Schema({
-    username: { type: String, required: true, unique: true, minlength: [3, 'Username must be at least 3 characters long'] },
-    hashedPassword: { type: String, required: true }
+    email: { type: String, required: true, unique: true },
+    companyName: { type: String, required: true },
+    hashedPassword: { type: String, required: true },
+    imageUrl: { type: String, required: true, default: 'default-profile.png' },
+    vehicles: { type: [Types.ObjectId], ref: 'Vehicle', default: [] },
+    roles: { type: [{ type: String, enum: ['user', 'admin'] }], default: ['user'] },
+    createdAt: { type: String, required: true, default: () => (new Date().toISOString()) },
+    updatedAt: { type: String, required: true, default: () => (new Date().toISOString()) }
 });
 
-userSchema.index({ username: 1 }, {
+userSchema.index({ email: 1 }, {
     unique: true,
     collation: {
         locale: 'en',

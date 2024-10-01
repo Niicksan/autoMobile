@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 
-async function register(email, name, password) {
+async function register(email, companyName, password) {
     const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
 
     if (existing) {
@@ -13,7 +13,7 @@ async function register(email, name, password) {
 
     const user = await User.create({
         email,
-        name,
+        companyName,
         hashedPassword
     });
 

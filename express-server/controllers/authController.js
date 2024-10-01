@@ -10,7 +10,7 @@ const { parseError } = require('../utils/errorParser');
 authController.post('/register',
     isGuest(),
     check('email').isEmail().withMessage('Invalid email'),
-    check('name').isLength({ min: 2 }).withMessage('Invalid name'),
+    check('companyName').isLength({ min: 2 }).withMessage('Passwords must be longer then 1'),
     check('password').isLength({ min: 5 })
         .withMessage('Passwords must be at least 5 characters long')
         .escape(),
@@ -30,7 +30,7 @@ authController.post('/register',
                 throw errors;
             }
 
-            const userInfo = await register(req.body.email, req.body.name, req.body.password);
+            const userInfo = await register(req.body.email, req.body.companyName, req.body.password);
 
             req.session.user = userInfo;
             return res.status(200).json({ user: userInfo });
@@ -45,8 +45,10 @@ authController.post('/register',
 authController.post('/login', isGuest(), async (req, res) => {
     try {
         const userInfo = await login(req.body.email, req.body.password);
-
+        console.log(userInfo);
+        
         req.session.user = userInfo;
+        console.log(req.session.user);
         return res.status(200).json({ user: userInfo });
     } catch (error) {
         const message = parseError(error);
