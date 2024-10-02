@@ -11,7 +11,7 @@ vehicleController.get('/',
     hasUser(),
     async (req, res) => {
         try {
-            const userId = req.user.id;
+            const userId = req.session.user.id;
             const vehicles = await getAllVehiclesCreatedByUser(userId);
 
             return res.json(vehicles);
