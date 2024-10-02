@@ -26,11 +26,12 @@ module.exports = (app) => {
     // Setup the static files
     app.use('/static', express.static('static'));
 
-     // Setup CORS
-     app.use(cors({
+    // Setup CORS
+    app.use(cors({
         origin: [config.origin],
         methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allowedHeaders: ['Content-Type'],
+        credentials: true,
     }));
 
     // Setup session
