@@ -1,0 +1,19 @@
+$white: #fff;
+$bgColor: #000;
+
+.footer {
+    background-color: $bgColor;
+    width: 100%;
+    color: $white;
+
+    .center {
+        text-align: center;
+        margin: 2em 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .center {
+        margin-top: 2em !important;
+    }
+}

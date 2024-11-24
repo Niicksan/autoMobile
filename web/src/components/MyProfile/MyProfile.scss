@@ -1,0 +1,308 @@
+$white: white;
+$blue: #00308F;
+
+.profile {
+    width: 75%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 4em auto 6em;
+
+    .grid-header {
+        h1 {
+            color: $blue;
+            text-align: center;
+            line-height: 1.2em;
+            margin: 1.5em auto;
+        }
+    }
+
+    .my-profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .image-holder {
+            width: 20%;
+            margin-right: 2em;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .user-info {
+            width: 30%;
+
+            .key-value {
+                display: flex;
+                flex-direction: row;
+
+                p {
+                    margin: 0.5em 0;
+                }
+
+                .left {
+                    min-width: 140px;
+                    text-align: left;
+                    color: $blue;
+                    font-weight: bold;
+                }
+
+            }
+        }
+    }
+
+    .my-pets-header {
+        h2 {
+            text-align: center;
+            color: $blue;
+            line-height: 1.2em;
+            margin: 1.5em 0 auto;
+        }
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+        grid-row-gap: 1.3em;
+        line-height: 1.2em;
+        margin-top: 2em;
+
+        .ad-container {
+            display: grid;
+            border-radius: 15px;
+            grid-template-columns: 85% 10%;
+            -webkit-box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+            -moz-box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+            box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+
+            a,
+            a:hover,
+            a:visited,
+            a:valid,
+            a:active {
+                color: black;
+                text-decoration: none;
+            }
+
+            a {
+                display: grid;
+                grid-template-columns: 30% 50%;
+                grid-column-gap: 1em;
+                align-items: center;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 15px;
+
+                }
+
+                .ad-section-container {
+                    padding: 0.5em 0;
+
+                    .ad-head-container {
+                        .title {
+                            margin-bottom: 0.3em;
+                        }
+                    }
+
+                    .ad-head-container,
+                    .ad-main-container,
+                    .ad-foot-container {
+                        margin-bottom: 0.5em;
+                        margin-right: 0.8em;
+                    }
+
+                    .ad-head-container,
+                    .ad-footer-container {
+                        .bold {
+                            color: $blue;
+                            font-weight: bold !important;
+                        }
+                    }
+                }
+            }
+
+            .buttons-handler {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 0.7em;
+
+                button {
+                    background: $white;
+                    text-align: center;
+                    font-weight: bold;
+                    color: $white;
+                    padding: 10px;
+                    border-radius: 10px;
+                }
+
+                .edit,
+                .delete {
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        text-align: center;
+                        padding: 0;
+                    }
+                }
+
+                .edit {
+                    border: 1px solid $blue;
+
+                    a {
+                        color: $blue;
+                    }
+
+                    &:hover {
+                        background-color: $blue;
+
+                        a {
+                            color: $white;
+                        }
+                    }
+                }
+
+                .delete {
+                    border: 1px solid $blue;
+
+                    a {
+                        color: $blue;
+                    }
+
+                    &:hover {
+                        background-color: $blue;
+
+                        a {
+                            color: $white;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .section-not-found {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            -webkit-box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+            -moz-box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+            box-shadow: 5px 6px 8px -4px rgba(0, 0, 0, 0.7);
+
+            h2 {
+                color: $blue;
+                margin: 1em auto;
+            }
+
+            p {
+                display: flex;
+                flex-direction: row;
+                font-size: 1.1em;
+
+                a,
+                a:visited,
+                a:valid,
+                a:active {
+                    color: $blue;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .profile {
+        width: 90%;
+    }
+
+    .ad-container {
+        a {
+            display: grid;
+            grid-template-columns: 100% !important;
+
+            .ad-section-container {
+                padding-left: 0.5em !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        .my-profile {
+            flex-direction: column;
+
+            .image-holder {
+                width: 50%;
+                margin-right: 0;
+            }
+
+            .user-info {
+                width: 60%;
+
+                .key-value {
+
+                    .left,
+                    .right {
+                        width: 50%;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+
+        .grid-container {
+            .ad-container {
+                display: flex !important;
+                flex-direction: column;
+
+                .buttons-handler {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 0.7em;
+                    margin: 1em 0;
+
+                    button {
+                        min-width: 75px;
+                        padding: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .profile {
+        width: 90%;
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 100%;
+
+            .ad-container {
+                a {
+                    display: grid;
+                    grid-template-columns: 38% 60%;
+                }
+            }
+        }
+    }
+}

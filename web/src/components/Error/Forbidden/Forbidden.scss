@@ -1,0 +1,117 @@
+$red: #d32f2f;
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.main {
+    display: block;
+}
+
+#forbidden {
+    position: relative;
+    min-height: 70vh;
+
+    .forbidden {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        line-height: 1.4;
+        text-align: center;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+        .forbidden-403 {
+            position: relative;
+            height: 200px;
+            margin: 0 auto 20px;
+            z-index: -1;
+        }
+
+        h1 {
+            font-family: montserrat, sans-serif;
+            font-size: 236px;
+            font-weight: 200;
+            margin: 0;
+            color: #211b19;
+            text-transform: uppercase;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        h2 {
+            font-family: montserrat, sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #211b19;
+            background: #fff;
+            padding: 10px 5px;
+            margin: auto;
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+
+    .link {
+        display: inline-block;
+        border: 2px solid $red;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 16px;
+        color: $red;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: 0.5s;
+        padding: 10px 30px;
+
+        &:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+    }
+}
+
+@media only screen and (max-width:767px) {
+    #forbidden {
+        min-height: 70vh;
+
+        .forbidden .forbidden-403 h1 {
+            font-size: 148px;
+        }
+    }
+}
+
+@media only screen and (max-width:480px) {
+    #forbidden {
+        .forbidden {
+            .forbidden-403 {
+                height: 148px;
+                margin: 0 auto 10px;
+
+                h1 {
+                    font-size: 86px;
+                }
+
+                h2 {
+                    font-size: 16px;
+                }
+            }
+
+            .link {
+                padding: 7px 15px;
+                font-size: 14px;
+            }
+        }
+    }
+}

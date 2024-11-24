@@ -1,0 +1,132 @@
+$mainColor: #00308F;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-bottom: none;
+    width: 100%;
+    height: 80vh;
+
+    .container-fluid {
+        width: 100%;
+        max-width: 1920px;
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            .text-holder {
+                width: 40%;
+                max-width: 70%;
+
+                .brand-name {
+                    color: $mainColor;
+                }
+
+                h1,
+                h2 {
+                    text-align: left;
+                }
+
+                h1 {
+                    font-size: 48px;
+                    font-weight: 700;
+                    color: black;
+                    margin: 0 0 10px 0;
+                }
+
+                h2 {
+                    color: #484848;
+                    font-size: 24px;
+                    margin-bottom: 1em;
+                }
+
+                .btn-get-started {
+                    display: inline-block;
+                    border: 2px solid $mainColor;
+                    border-radius: 50px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: $mainColor;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+                    transition: 0.5s;
+                    padding: 10px 30px;
+
+                    &:hover {
+                        background-color: $mainColor;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .header-image {
+                width: 30%;
+                max-width: 70%;
+            }
+        }
+    }
+}
+
+/* animated svg */
+#header .animated {
+    animation: up-down 2.5s ease-in-out infinite alternate-reverse both;
+}
+
+@-webkit-keyframes up-down {
+    0% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@media only screen and (max-width:767px) {
+    #header {
+        .container-fluid {
+            .row {
+                flex-direction: column-reverse;
+
+                .text-holder {
+                    width: 90%;
+                    margin-bottom: 2em;
+
+                    h1 {
+                        font-size: 32px;
+                    }
+
+                    h2 {
+                        font-size: 22px;
+                    }
+                }
+
+                .header-image {
+                    width: 50%;
+                    max-width: 70%;
+                }
+            }
+        }
+    }
+}

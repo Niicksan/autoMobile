@@ -1,0 +1,36 @@
+$red: #00308F;
+
+#catalog-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 2em;
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h3.no-articles {
+        margin: 1em 0 1.5em;
+    }
+
+    .add {
+        display: inline-block;
+        border: 2px solid $red;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 16px;
+        color: $red;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: 0.5s;
+        padding: 10px 30px;
+
+        &:hover {
+            background-color: #00308F;
+            color: #fff;
+        }
+    }
+}
