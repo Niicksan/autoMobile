@@ -8,7 +8,7 @@ const vehicleSchema = new Schema({
     engine: { type: String, required: true },
     fuel: { type: String, required: true },
     yearOfManufacture: { type: String, required: true },
-    imageUrl: { type: String, required: true },
+    imagePath: { type: String, required: true },
     ownerId: { type: Types.ObjectId, ref: 'User' },
     createdAt: { type: String, required: true, default: () => (new Date().toISOString()) },
     updatedAt: { type: String, required: true, default: () => (new Date().toISOString()) }

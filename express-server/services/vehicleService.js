@@ -38,8 +38,8 @@ async function updateVehicle(vehicle, data) {
     vehicle.description = data.description;
     vehicle.updatedAt = new Date().toISOString();
 
-    if (data.imageUrl) {
-        vehicle.imageUrl = data.imageUrl;
+    if (data.imagePath) {
+        vehicle.imagePath = data.imagePath;
     }
 
     return vehicle.save();

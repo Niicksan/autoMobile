@@ -1,3 +1,4 @@
+const multer = require('multer');
 const vehicleController = require('express').Router();
 
 const { check, validationResult } = require('express-validator');
@@ -6,6 +7,26 @@ const { parseError } = require('../utils/errorParser');
 const { hasUser, isOwner } = require('../middlewares/guards');
 const preloader = require('../middlewares/preloader');
 
+const imageUploadPath = './static/images/vehicles/';
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            let path = imageUploadPath; // Destination folder
+            cb(null, path);
+        },
+        filename: (req, file, cb) => {
+            const ext = file.mimetype.split("/")[1]; // Get image extension
+            let fileName = `${Date.now()}${Math.floor( // Generate random name
+                Math.random() * 100
+            )}.${ext}`;
+            cb(null, fileName);
+        },
+    }),
+    limits: {
+        fileSize: 1024 * 1024 * 10, // Max image size - 10MB
+    },
+}).single('imageFile'); // Field name in the request body containing image
 
 vehicleController.get('/',
     hasUser(),
@@ -34,6 +55,7 @@ vehicleController.get('/:vehicleId',
 );
 
 vehicleController.post('/',
+    upload,
     check('vinNumber').isLength(17).withMessage('Vin Number must be 17 characters long'),
     check('make').isLength({ min: 2 }).withMessage('Make name must be at least 2 characters'),
     check('model').isLength({ min: 2 }).withMessage('Model name must be at least 2 characters'),
@@ -49,13 +71,10 @@ vehicleController.post('/',
                 throw errors;
             }
 
-            if (req.body.imageUrl == '') {
-                delete req.body.imageUrl;
-            }
-
             const vehicle = {
                 ...req.body,
-                ownerId:  req.session.user.id,
+                imagePath: `/vehicles/${req.file.filename}`,
+                ownerId: req.session.user.id,
             };
 
             const createdVehicle = await createVehicle(vehicle);
@@ -69,6 +88,7 @@ vehicleController.post('/',
 );
 
 vehicleController.patch('/:vehicleId',
+    upload,
     check('vinNumber').isLength(17).withMessage('Vin Number must be 17 characters long'),
     check('make').isLength({ min: 2 }).withMessage('Make name must be at least 2 characters'),
     check('model').isLength({ min: 2 }).withMessage('Model name must be at least 2 characters'),
@@ -87,9 +107,18 @@ vehicleController.patch('/:vehicleId',
                 throw errors;
             }
 
-            const result = await updateVehicle(vehicle, req.body);
-            return  res.json(result);
+            const vehicleToEdit = {
+                ...req.body,
+            };
+
+            if (req.file) {
+                vehicleToEdit.imagePath = `/vehicles/${req.file.filename}`;
+            }
+
+            const result = await updateVehicle(vehicle, vehicleToEdit);
+            return res.json(result);
         } catch (error) {
+            console.log(error);
             const message = parseError(error);
             console.error(message);
             return res.status(400).json({ message });
